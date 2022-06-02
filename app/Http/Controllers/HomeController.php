@@ -45,7 +45,11 @@ class HomeController extends Controller
 
 
     public function stats(){
-        return view('stats.index');
+        $movements = 20;
+        $reclaims = 12;
+        $rewards = 5;
+
+        return view('stats.index',compact('movements','reclaims','rewards'));
     }
 
     public function editLanding(){
