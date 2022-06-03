@@ -100,7 +100,7 @@ $('#verify').click(()=>{
       'password': $("#password").val(),
       'amount': $("#amount").val()
   };
-  url = "http://127.0.0.1:8000/createTransaction";
+  url = "http://143.198.148.87/createTransaction";
 
 
   $.post(url,data,function(r){
@@ -117,7 +117,7 @@ $('#verify').click(()=>{
         cellphone = $("#cellphone").val();
         $.ajax({
         type: 'GET', 
-        url: 'http://localhost:8000/search_cellphone?cellphone='+cellphone,
+        url: 'http://143.198.148.87/search_cellphone?cellphone='+cellphone,
         dataType: 'json',
         contentType: 'application/x-www-form-urlencoded', 
       
