@@ -1,6 +1,8 @@
 @extends('layouts.app')
  
 @section('content')
+<a class="btn btn-primary" href="{{ url('suppliers') }}"> Regresar</a>
+
 <h1>Editar</h1>
 
 @if ($errors->any())
@@ -25,13 +27,13 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="txtLastName">Razòn social:</label>
-                    <input type="text" class="form-control" placeholder="Ingresa Razòn social" value="{{ $supplier->business_name }}"  name="business_name">
+                    <label for="txtLastName">Razón social:</label>
+                    <input type="text" class="form-control" placeholder="Ingresa Razón social" value="{{ $supplier->business_name }}"  name="business_name">
                 </div>
             </div>
         </div>
        
-      <div class="row">
+      <!-- <div class="row">
           <div class="col-md-6">
             <div class="form-group">
                 <label for="txtLastName">Nombre representate legal:</label>
@@ -44,7 +46,7 @@
                 <input type="phone" class="form-control" placeholder="Ingresa telèfono" value="{{ $supplier->phone }}"  name="phone">
             </div>
           </div>
-      </div>
+      </div> -->
        
        
         <div class="form-group">
@@ -52,7 +54,7 @@
                 <input type="number" class="form-control" placeholder="Ingresa cashback" value="{{ $supplier->cashback }}" name="cashback"> 
         </div> 
        
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="txtLastName">Correo electronico:</label>
@@ -65,14 +67,50 @@
                     <input type="text" class="form-control" placeholder="Ingresa contraseña" value="{{ $supplier->password }}" name="password">
                 </div>
             </div>
-        </div>
+        </div> -->
         <input type="hidden" class="form-control"  value="{{ $supplier->id }}" name="id">
 
         
         <div class="form-group">
-            <label for="txtAddress">Descripciòn:</label>
-            <textarea class="form-control"  name="description" rows="10"  placeholder="Ingresa descripciòn">{{ $supplier->description }}</textarea>
+            <label for="txtAddress">Descripción:</label>
+            <textarea class="form-control"  name="description" rows="10"  placeholder="Ingresa descripción">{{ $supplier->description }}</textarea>
         </div>
-        <button type="submit" class="btn btn-default">Editar</button>
+        <p class="text-danger text-center mt-4" data-toggle="modal" data-target="#elimatemodal">
+                                Bloquear
+                            </p>
+        <button type="submit" class="btn btn-success my-4 btn-block">Editar</button>
     </form>
+    
+    
+</div>
+
+<div class="modal fade" id="elimatemodal" tabindex="-1" role="dialog" aria-labelledby="elimatemodalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¿estás seguro?</h5>
+      </div>
+      <div class="row">
+          <div class="col-md-3 offset-md-3 " style="margin-left:3em;">
+          </div>
+      </div>
+      <div class="modal-body">
+          <p>Quedara bloqueado el proveedor.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal">Cerrar</button>
+        <form action="{{ route('rewards.destroy') }}" method="POST">
+        <input type="hidden" name="id" value="2">
+        <!-- se tiene que modificar -->
+        @csrf
+        <button type="button" class="btn btn-danger" id="accept">Eliminar</button>
+        </form>
+ 
+    </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
 @endsection

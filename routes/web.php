@@ -29,6 +29,7 @@ Route::patch('/suppliers/update',[SupplierController::class, 'update'])->name('s
 Route::get('/suppliers/edit/{id}',[SupplierController::class, 'edit'])->name('suppliers.edit');
 Route::get('/suppliers/show/{id}',[SupplierController::class, 'show'])->name('suppliers.show');
 Route::delete('/suppliers/destroy',[SupplierController::class, 'destroy'])->name('suppliers.destroy');
+Route::post('suppliers/register',[SupplierController::class,'register'])->name('suppliers.register');
 
 Auth::routes();
 
@@ -42,6 +43,8 @@ Route::get('/rewards/show/{id}',[RewardsController::class, 'show'])->name('rewar
 Route::post('/rewards/destroy',[RewardsController::class, 'destroy'])->name('rewards.destroy');
 
 Route::get('/profile',[HomeController::class,'profile'])->name('profile');
+Route::get('/edit-profile',[HomeController::class,'editProfile'])->name('edit-profile');
+Route::patch('/update-profile',[HomeController::class,'updateProfile'])->name('update-profile');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -66,3 +69,4 @@ Route::post('/createReclaim',[HomeController::class,'reclaim'])->name('reclaim')
 
 Route::get('/redeem',[HomeController::class,'redeem'])->name('redeem');
 
+Route::get('/convert',[HomeController::class,'convert'])->name('convert');

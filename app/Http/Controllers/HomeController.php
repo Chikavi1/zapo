@@ -34,6 +34,20 @@ class HomeController extends Controller
         return view('profile.index',compact('user'));
     }
 
+    public function editProfile(){
+        $user = Auth::user();
+        return view('profile.edit',compact('user'));
+    }
+
+    public function updateProfile(Request $request){
+        $user = User::find(Auth::user()->id);
+        $user->name = $request->name;
+        $user->cellphone = $request->cellphone;
+        $user->update();
+        return redirect('/profile')->with('success', 'Se ha actualizado correctamente.');
+
+    }
+
     public function logout(Request $request) {
         Auth::logout();
         return redirect('/login');
@@ -58,6 +72,10 @@ class HomeController extends Controller
 
     public function reset(){
         return view('auth.reset');
+    }
+
+    public function convert(){
+        return view('suppliers.register');
     }
     
     public function sendMessage(){

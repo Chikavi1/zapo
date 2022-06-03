@@ -1,17 +1,19 @@
 @extends('layouts.app')
- 
 @section('content')
 
 @if ($message = Session::get('success'))
-<div class="alert alert-success">
-    <p>{{ $message }}</p>
-</div>
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
 @endif
 
 @if(Auth::user()->type === 0)
 
 <a href="{{ url('rewards/create') }}" class="btn btn-primary mb-2">Crear Regalo</a>
-    <table class="table table-bordered">
+@elseif(Auth::user()->type === 1)
+<h2>Regalos que tenemos para ti</h2>
+@endif
+<!-- <table class="table table-bordered">
         <tr>
             <th>No</th>
             <th>Nombre</th>
@@ -43,17 +45,17 @@
                 </td>
             </tr>
         @endforeach
-    </table>
-    @elseif(Auth::user()->type === 1)
-    <h2>Regalos que tenemos para ti</h2>
+</table> -->
+    
+
     <div class="row">
     @foreach($rewards as $reward)
 
         <div class="col-xs-12 col-md-4">
-            <div class="card" style="width: 18rem;max-height:30em;height:30em;margin-top:1em">
+            <div class="card" style="width: 20rem;max-height:30em;height:30em;margin-top:1em">
                 <img class="card-img-top" style="max-height:15em;object-fit: cover;"  src="{{ URL::asset('public/photos/'.$reward->photos) }}"  alt="Imagenes del regalo">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $reward->name }}</h5>
+                    <h5 class="text-capitalize card-title">{{ $reward->name }}</h5>
                     <p class="text-success">Puntos {{ $reward->points }}</p>
                     <p class="card-text">{!! $reward->description !!}</p>
                     @if(Auth::user()->points >= $reward->points)
@@ -63,15 +65,51 @@
                         </button>
                     </p>
                     @endif
-                    <p class="text-center"><a href="{{ route('rewards.show',$reward->id) }}">Ver</a></p>
+                    @if(Auth::user()->type === 0)
+                            <a class="btn btn-outline-info" href="{{ route('rewards.show',$reward->id) }}"><i class="fa-solid fa-eye"></i></a>
+                            <a class="btn btn-outline-primary" href="{{ route('rewards.edit',$reward->id) }}"><i class="fa-solid fa-pencil"></i></a>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#elimatemodal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                    @else
+                        <p class="text-center"><a href="{{ route('rewards.show',$reward->id) }}">Ver</a></p>
+                    @endif
                 </div>
             </div>
         </div>
         @endforeach
     </div>
     
+    
 
-    <div class="modal fade" id="qrmodal" tabindex="-1" role="dialog" aria-labelledby="qrmodalLabel" aria-hidden="true">
+<div class="modal fade" id="elimatemodal" tabindex="-1" role="dialog" aria-labelledby="elimatemodalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¿estás seguro?</h5>
+      </div>
+      <div class="row">
+          <div class="col-md-3 offset-md-3 " style="margin-left:3em;">
+          </div>
+      </div>
+      <div class="modal-body">
+          <p>Ya no estará disponible este regalo.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal">Cerrar</button>
+        <form action="{{ route('rewards.destroy') }}" method="POST">
+        <input type="hidden" name="id" value="2">
+        <!-- se tiene que modificar -->
+        @csrf
+        <button type="button" class="btn btn-danger" id="accept">Eliminar</button>
+        </form>
+ 
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="qrmodal" tabindex="-1" role="dialog" aria-labelledby="qrmodalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -107,9 +145,8 @@
      console.log(r)
      
   });
-
-
-    });
+});
 </script>
-    @endif
+
+
 @endsection

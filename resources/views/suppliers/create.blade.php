@@ -1,11 +1,11 @@
 @extends('layouts.app')
  
 @section('content')
-<h1>Crear</h1>
+<h1>Crear Proveedor</h1>
 
 @if ($errors->any())
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <strong>Whoops!</strong>Hubo un erro.<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -24,8 +24,8 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="txtLastName">Razòn social:</label>
-                    <input type="text" class="form-control" placeholder="Ingresa Razòn social" name="business_name">
+                    <label for="txtLastName">Razón social:</label>
+                    <input type="text" class="form-control" placeholder="Ingresa Razón social" name="business_name">
                 </div>
             </div>
         </div>
@@ -39,8 +39,8 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-                <label for="txtLastName">Telèfono:</label>
-                <input type="phone" class="form-control" placeholder="Ingresa telèfono" name="phone">
+                <label for="txtLastName">Teléfono:</label>
+                <input type="phone" class="form-control" placeholder="Ingresa teléfono" name="phone">
             </div>
           </div>
       </div>
@@ -48,29 +48,29 @@
        
         <div class="form-group">
                 <label for="txtLastName">Cashback:</label>
-                <input type="number" class="form-control" placeholder="Ingresa cashback" name="cashback"> 
+                <input type="number" min="1" max="5" class="form-control" placeholder="Ingresa cashback" name="cashback"> 
         </div> 
        
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="txtLastName">Correo electronico:</label>
-                    <input type="email" class="form-control" placeholder="Ingresa correo electronico" name="email">
+                    <label for="txtLastName">Correo electrónico:</label>
+                    <input type="email" class="form-control" placeholder="Ingresa correo electrónico" name="email">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="txtLastName">Contraseña:</label>
-                    <input type="text" class="form-control" placeholder="Ingresa contraseña" name="password">
+                    <input type="password" class="form-control" placeholder="Ingresa contraseña" name="password">
                 </div>
             </div>
         </div>
        
         
         <div class="form-group">
-            <label for="txtAddress">Descripciòn:</label>
-            <textarea class="form-control"  name="description" rows="10" placeholder="Ingresa descripciòn"></textarea>
+            <label for="txtAddress">Descripción:</label>
+            <textarea class="ckeditor"  name="description" rows="10" placeholder="Ingresa descripción"></textarea>
         </div>
-        <button type="submit" class="btn btn-default">Crear</button>
+        <button type="submit" class="btn btn-success my-4 btn-block">Crear</button>
     </form>
 @endsection

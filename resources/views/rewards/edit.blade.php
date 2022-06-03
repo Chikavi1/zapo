@@ -3,8 +3,8 @@
 @section('content')
 <div class="row">
     <div class="col-md-8 offset-md-2 col-sm-12">
-
-<h1>Editar</h1>
+        <a class="btn btn-primary" href="{{ url('rewards') }}"> Regresar</a>
+    <h1>Editar</h1>
 
 @if ($errors->any())
         <div class="alert alert-danger">
@@ -49,11 +49,12 @@
             </textarea>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="txtFirstName">Fotos</label>
-                    <input class="form-control" type="file" name="photos" placeholder="Selecciona imagen" id="image">
+                    <img width="150" src="{{ URL::asset('public/photos/'.$reward->photos) }}" alt="{{ $reward->name }}">
+                    <input class="form-control" type="file" accept="image/apng, image/avif, image/gif, image/jpeg, image/png, image/svg+xml, image/webp" name="photos" placeholder="Selecciona imagen" id="image">
                 </div>
             </div>
         </div>

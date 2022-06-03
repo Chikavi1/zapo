@@ -8,35 +8,35 @@
 </div>
 @endif
 
-<a href="{{ url('suppliers/create') }}">Crear Proovedor</a>
-    <table class="table table-bordered">
-        <tr>
-            <th>No</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Address</th>
-            <th width="280px">Action</th>
-        </tr>
-        @php
-            $i = 0;
-        @endphp
-        @foreach ($suppliers as $supplier)
-            <tr>
-                <td>{{ $supplier->id }}</td>
-                <td>{{ $supplier->name }}</td>
-                <td>{{ $supplier->business_name }}</td>
-                <td>{{ $supplier->email }}</td>
-                <td>
-                    <form action="{{ route('suppliers.destroy',$supplier->id) }}" method="POST">
-                        <a class="btn btn-info" href="{{ route('suppliers.show',$supplier->id) }}">Ver</a>
-                        <a class="btn btn-primary" href="{{ route('suppliers.edit',$supplier->id) }}">Editar</a>
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </table>
+<!-- <a href="{{ url('suppliers/create') }}" class="btn btn-primary mb-2">Crear Proovedor</a> -->
 
+<div class="table-responsive">
+    <table class="table table-bordered table-sm">
+            <tr>
+                <th >Acciones</th>
+                <th>Razon Social</th>
+                <th>Cashback</th>
+                <th>Estatus</th>
+            </tr>
+            @php
+                $i = 0;
+            @endphp
+            @foreach ($suppliers as $supplier)
+                <tr>
+                    <td >
+                        <form action="{{ route('suppliers.destroy',$supplier->id) }}" method="POST">
+                            <a class="btn btn-sm btn-info" href="{{ route('suppliers.show',$supplier->id) }}"><i class="fa-solid fa-eye"></i></a>
+                            <!-- <a class="btn btn-sm btn-primary" href="{{ route('suppliers.edit',$supplier->id) }}"><i class="fa-solid fa-pencil"></i></a> -->
+                            @csrf
+                            @method('DELETE')
+                            <!-- <button type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></button> -->
+                        </form>
+                    </td>
+                    <td>{{ $supplier->business_name }}</td>
+                    <td>{{ $supplier->cashback }}</td>
+                    <td>Disponible</td>
+                </tr>
+            @endforeach
+    </table>
+</div>
 @endsection

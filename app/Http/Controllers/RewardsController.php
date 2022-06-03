@@ -76,11 +76,11 @@ class RewardsController extends Controller
             $filename = Str::random(14).'.png';
             $file->move(public_path('public/photos'), $filename);
             $result = $filename;
+            $reward->photos                = $result;
         }
         $reward->name                  = $request->get('name');
         $reward->description           = $request->get('description');
         $reward->conditions            = $request->get('conditions');
-        $reward->photos                = $result;
         $reward->points                = $request->get('points');
 
         $reward->update();

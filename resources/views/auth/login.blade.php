@@ -15,7 +15,7 @@
                             <label for="cellphone" class="col-md-4 col-form-label text-md-end">Celular</label>
 
                             <div class="col-md-6">
-                                <input id="cellphone"  class="form-control @error('cellphone') is-invalid @enderror" name="cellphone" value="{{ old('cellphone') }}" required  autofocus>
+                                <input id="cellphone" type="number" class="form-control @error('cellphone') is-invalid @enderror" name="cellphone" value="{{ old('cellphone') }}" required  autofocus>
 
                                 @error('cellphone')
                                     <span class="invalid-feedback" role="alert">
@@ -41,13 +41,7 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        Recordarme
-                                    </label>
-                                </div>
+                                <a href="/register">Registrarme</a>
                             </div>
                         </div>
 

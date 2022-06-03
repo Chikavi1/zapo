@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Auth;
+
 class SupplierController extends Controller
 {
     public function index()
@@ -17,13 +19,36 @@ class SupplierController extends Controller
         return view('suppliers.create');
     }
 
+    public function register(Request $request)
+    {
+// dd($request->all());
+        $request->validate([
+            'business_name'=> 'required',
+            'cashback' => 'required'
+        ]);
+ 
+        $supplier = new Supplier([
+            'user_id' => Auth::user()->id,
+            'name' => $request->get('name'),
+            'business_name'=> $request->get('business_name'),
+            // 'representative_name'=> $request->get('representative_name'),
+            // 'email'=> $request->get('email'),
+            'cashback'=> $request->get('cashback'),
+            // 'phone'=> $request->get('phone'),
+            // 'password'=> $request->get('password'),
+            // 'description'=> $request->get('description'),
+        ]);
+ 
+        $supplier->save();
+        return redirect()->back()->with('success', 'Se ha agregado un proovedor');
+    }
+
     public function store(Request $request)
     {
 
         $request->validate([
-            'name'=>'required',
             'business_name'=> 'required',
-            'email' => 'required'
+            'cashback' => 'required'
         ]);
  
         $supplier = new Supplier([
@@ -57,20 +82,19 @@ class SupplierController extends Controller
     {
 
         $request->validate([
-            'name'=>'required',
             'business_name'=> 'required',
-            'email' => 'required'
+            'cashback' => 'required'
         ]);
  
  
         $supplier = Supplier::find($request->id);
         $supplier->name                  = $request->get('name');
         $supplier->business_name         = $request->get('business_name');
-        $supplier->representative_name   = $request->get('representative_name');
-        $supplier->email                 = $request->get('email');
+        // $supplier->representative_name   = $request->get('representative_name');
+        // $supplier->email                 = $request->get('email');
         $supplier->cashback              = $request->get('cashback');
-        $supplier->phone                 = $request->get('phone');
-        $supplier->password              = $request->get('password');
+        // $supplier->phone                 = $request->get('phone');
+        // $supplier->password              = $request->get('password');
         $supplier->description           = $request->get('description');
         $supplier->update();
  

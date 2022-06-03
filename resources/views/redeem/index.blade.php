@@ -4,6 +4,10 @@
     <h3 class="text-center">Mis Premios</h3>
     @if($reclaims->count() === 0)
     <h2 class="text-center">Por el momento, no haz canjeado tus puntos por un premio.</h2>
+    <p class="text-center"> 
+        <a  href="{{ url('/profile') }}"> Regresar</a>
+    </p>
+
     @endif
     <div class="row">
     @foreach($reclaims as $reward)

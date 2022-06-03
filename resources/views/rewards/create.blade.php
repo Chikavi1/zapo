@@ -4,7 +4,8 @@
 
 <div class="row">
     <div class="col-md-8 offset-md-2 col-sm-12">
-          
+    <a class="btn btn-primary" href="{{ url('rewards') }}"> Regresar</a>
+
 <h1>Crear Regalo</h1>
 
 @if ($errors->any())
@@ -51,7 +52,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="txtFirstName">Fotos</label>
-                    <input class="form-control" type="file" name="photos" placeholder="Selecciona imagen" id="image">
+                    <input class="form-control" type="file" accept="image/apng, image/avif, image/gif, image/jpeg, image/png, image/svg+xml, image/webp" name="photos" placeholder="Selecciona imagen" id="image">
                     <!-- <input type="text" class="form-control"  placeholder="Ingresa foto" name="photos"> -->
                 </div>
             </div>

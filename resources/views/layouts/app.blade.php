@@ -22,7 +22,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="border: none !important; outline: none !important;">
   <div class="container-fluid right" >
     <a class="navbar-brand" href="/home">Bonos</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,10 @@
       <ul class="navbar-nav">
       @if(Auth::user()->type == 0)
         <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="/stats">Estadisticas</a>
+          <a class="nav-link active" aria-current="page" href="/stats">Estadisticas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/suppliers">Proveedores</a>
         </li>
         @endif
         @if(Auth::user()->type == 1)

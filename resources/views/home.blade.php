@@ -11,6 +11,26 @@
                 </div>
             </div>
         </div>
+        <ul class="list-group d-block d-sm-none border-0">
+                    <li class="list-group-item border-0" >
+                        <a href="/rewards">
+                            Premios
+                        </a>    
+                    </li>
+                    @if($user->type === 0)
+                        <li class="list-group-item border-0" >
+                            <a href="/suppliers">
+                                Proveedores
+                            </a>    
+                        </li>
+                    @endif
+                    <li class="list-group-item border-0">
+                        <a href="/profile">
+                            Ver perfil
+                        </a>      
+                    </li>
+                </ul>
+
         <div class="col-md-8">
             @if($user->type === 1)
             <div class="card">
