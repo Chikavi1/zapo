@@ -61,6 +61,8 @@ Route::get('/reset',[HomeController::class,'reset'])->name('reset');
 
 Route::get('/stats',[HomeController::class,'stats'])->name('stats');
 Route::get('/edit-landing',[HomeController::class,'editLanding'])->name('editLanding');
+Route::patch('/edit-landing/store',[HomeController::class, 'storeLanding'])->name('storeLanding');
+
 
 Route::post('/createTransaction',[HomeController::class,'transaction'])->name('transaction');
 Route::post('/createReclaim',[HomeController::class,'reclaim'])->name('reclaim');

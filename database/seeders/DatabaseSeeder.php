@@ -36,5 +36,13 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'type' => 2
         ]);
+
+        DB::table('configs')->insert([
+            'title'    => 'Titulo',
+            'subtitle' => 'Subtitulo',
+            'image1'   => 'default.png',
+            'image2'   => 'default.png',
+            'image3'   => 'default.png'
+        ]);
     }
 }

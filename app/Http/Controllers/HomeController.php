@@ -9,6 +9,7 @@ use App\Models\Transactions;
 use App\Models\Reclaims;
 use App\Models\Rewards;
 use App\Models\Supplier;
+use App\Models\Config;
 
 use bcrypt;
 use Hash;
@@ -25,14 +26,10 @@ class HomeController extends Controller
     }
 
     public function welcome(){
-        $imagen1   = '';
-
-        $title    = 'Titulo definido';
-        $subtitle = 'subtitulo definido';
-
+        $config = Config::all()->first();
         $latestRewards = Rewards::all();
         // dd($latestRewards);
-        return view('welcome',compact('imagen1','title','subtitle','latestRewards'));
+        return view('welcome',compact('config','latestRewards'));
 
     }
 
@@ -58,7 +55,6 @@ class HomeController extends Controller
         $user->cellphone = $request->cellphone;
         $user->update();
         return redirect('/profile')->with('success', 'Se ha actualizado correctamente.');
-
     }
 
     public function logout(Request $request) {
@@ -70,7 +66,6 @@ class HomeController extends Controller
         return view('movements.index');
     }
 
-
     public function stats(){
         $movements = Transactions::all()->count();
         $reclaims = Reclaims::all()->count();
@@ -81,17 +76,45 @@ class HomeController extends Controller
     }
 
     public function editLanding(){
-        $config = Config::all();
+        $config = Config::all()->first();
         return view('edit-landing.index',compact('config'));
+    }
+
+    public function storeLanding(Request $request){
+        $config = Config::all()->first();
+        $config->title = $request->title;
+        $config->subtitle = $request->subtitle;
+
+        if($request->file('image1')){
+            $file= $request->file('image1');
+            $filename = Str::random(14).'.png';
+            $file->move(public_path('public/photos'), $filename);
+            $config->image1 = $filename;
+        }
+
+        if($request->file('image2')){
+            $file= $request->file('image2');
+            $filename = Str::random(14).'.png';
+            $file->move(public_path('public/photos'), $filename);
+            $config->image2 = $filename;
+        }
+
+        if($request->file('image3')){
+            $file= $request->file('image3');
+            $filename = Str::random(14).'.png';
+            $file->move(public_path('public/photos'), $filename);
+            $config->image3 = $filename;
+        }
+
+        $config->save();
+        return redirect('/edit-landing')->with('success', 'Se ha actualizado correctamente.');
     }
 
     public function reset(){
         return view('auth.reset');
     }
 
-    public function convert(){
-
-        
+    public function convert(){     
         $supplier = Supplier::where('user_id',Auth::user()->id)->get();
         $counter = $supplier->count();
         $formulario = true;

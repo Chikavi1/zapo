@@ -37,13 +37,34 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_180913ee455%20text%20%7B%20fill%3A%23555%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_180913ee455%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22284.9000015258789%22%20y%3D%22216.5%22%3EFirst%20slide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="First slide">
+      <img class="d-block w-100 d-block d-sm-none" 
+      style="max-height:15em;min-height:15em;object-fit:cover;"
+      src="{{ URL::asset('public/photos/'.$config->image1) }}"
+       alt="First slide">
+       <img class="d-block w-100 d-none d-md-block" 
+      style="max-height:30em;min-height:30em;object-fit:cover;"
+      src="{{ URL::asset('public/photos/'.$config->image1) }}"
+       alt="First slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="https://images.unsplash.com/photo-1651629679477-82cab6ec3443?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8YU5jYVMwTWlkREl8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Second slide">
+      <img class="d-block w-100 d-block d-sm-none"
+      style="max-height:15em;min-height:15em;object-fit:cover;"
+      src="{{ URL::asset('public/photos/'.$config->image2) }}"
+       alt="Second slide">
+       <img class="d-block w-100 d-none d-md-block" 
+      style="max-height:30em;min-height:30em;object-fit:cover;"
+      src="{{ URL::asset('public/photos/'.$config->image2) }}"
+       alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="https://images.unsplash.com/photo-1633459947987-a32b39bc3875?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDR8YU5jYVMwTWlkREl8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Third slide">
+      <img class="d-block w-100 d-block d-sm-none"
+      style="max-height:15em;min-height:15em;object-fit:cover;"
+      src="{{ URL::asset('public/photos/'.$config->image3) }}"
+        alt="Third slide">
+        <img class="d-block w-100 d-none d-md-block" 
+      style="max-height:30em;min-height:30em;object-fit:cover;"
+      src="{{ URL::asset('public/photos/'.$config->image3) }}"
+       alt="First slide">
     </div>
   </div>
  
@@ -52,8 +73,8 @@
 <div class="container mt-4" > 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">{{ $title }}</h1>
-    <p class="lead">{{ $subtitle }}</p>
+    <h1 class="display-4">{{ $config->title }}</h1>
+    <p class="lead">{{ $config->subtitle }}</p>
   </div>
 </div>
 </div>
