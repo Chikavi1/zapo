@@ -18,9 +18,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[HomeController::class, 'welcome']);
 
 Route::get('/suppliers',[SupplierController::class, 'index']);
 Route::get('/suppliers/create',[SupplierController::class, 'create']);

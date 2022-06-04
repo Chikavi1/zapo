@@ -101,7 +101,7 @@
         <input type="hidden" name="id" value="2">
         <!-- se tiene que modificar -->
         @csrf
-        <button type="button" class="btn btn-danger" id="accept">Eliminar</button>
+        <button type="button" class="btn btn-danger">Eliminar</button>
         </form>
  
     </div>
@@ -136,14 +136,14 @@
     $('#accept').click(()=> {
         var data = {
         '_token':'{!! csrf_token() !!}',
-        'id_users': 3,
+        'id_users': {!! Auth::user()->id !!},
         'id_rewards': 1,
     };
     url = "http://127.0.0.1:8000/createReclaim";
 
   $.post(url,data,function(r){
      console.log(r)
-     
+     window.location = '/redeem'
   });
 });
 </script>

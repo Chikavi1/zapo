@@ -34,7 +34,17 @@
                     </td>
                     <td>{{ $supplier->business_name }}</td>
                     <td>{{ $supplier->cashback }}</td>
-                    <td>Disponible</td>
+                    <td>
+                        <a href="">
+                            @if($supplier->estatus == 0)
+                                Pendiente
+                            @elseif($supplier->estatus == 1)
+                                Disponible
+                            @else
+                                Bloqueado
+                            @endif
+                        </a>
+                    </td>
                 </tr>
             @endforeach
     </table>

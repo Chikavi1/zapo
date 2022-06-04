@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('cashback')->default(0);
             // $table->string('phone')->unique();
             // $table->string('password');
-            // $table->integer('estatus')->default(1);
+            $table->integer('estatus')->default(0);
             $table->text('description')->nullable();
             $table->timestamps();
         });

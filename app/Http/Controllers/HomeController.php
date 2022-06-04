@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Transactions;
 use App\Models\Reclaims;
 use App\Models\Rewards;
+use App\Models\Supplier;
 
 use bcrypt;
 use Hash;
@@ -20,7 +21,19 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except(['reset']);
+        $this->middleware('auth')->except(['reset','welcome']);
+    }
+
+    public function welcome(){
+        $imagen1   = '';
+
+        $title    = 'Titulo definido';
+        $subtitle = 'subtitulo definido';
+
+        $latestRewards = Rewards::all();
+        // dd($latestRewards);
+        return view('welcome',compact('imagen1','title','subtitle','latestRewards'));
+
     }
 
     public function index()
@@ -59,15 +72,17 @@ class HomeController extends Controller
 
 
     public function stats(){
-        $movements = 20;
-        $reclaims = 12;
-        $rewards = 5;
-
-        return view('stats.index',compact('movements','reclaims','rewards'));
+        $movements = Transactions::all()->count();
+        $reclaims = Reclaims::all()->count();
+        $rewards = Rewards::all()->count();
+        $suppliers = Supplier::all()->count();
+        $users = User::all()->count();
+        return view('stats.index',compact('movements','reclaims','rewards','suppliers','users'));
     }
 
     public function editLanding(){
-        return view('edit-landing.index');
+        $config = Config::all();
+        return view('edit-landing.index',compact('config'));
     }
 
     public function reset(){
@@ -75,7 +90,20 @@ class HomeController extends Controller
     }
 
     public function convert(){
-        return view('suppliers.register');
+
+        
+        $supplier = Supplier::where('user_id',Auth::user()->id)->get();
+        $counter = $supplier->count();
+        $formulario = true;
+
+        if($counter == 0){
+            $formulario = true;
+        }else{
+            $formulario = false;
+            $supplier = $supplier->first();
+        }
+
+        return view('suppliers.register',compact('formulario','supplier'));
     }
     
     public function sendMessage(){

@@ -21,12 +21,12 @@
     <p class="card-text">Puede que tarde unos días en que te contacten.</p>
   </div>
 </div>
-<h1>Crear Proveedor</h1>
-
+        @if($formulario)
+        <h1>Crear Proveedor</h1>
         <div class="row mt-2">
             <div class="col-md-6 mt-4">
                 <div class="form-group">
-                    <label for="txtFirstName">Nombre:</label>
+                    <label for="txtFirstName">Nombre de la empresa:</label>
                     <input type="text" class="form-control"  placeholder="Ingresa nombre" name="name">
                 </div>
             </div>
@@ -44,9 +44,33 @@
         </div> 
         
         <div class="form-group mt-4">
-            <label for="txtAddress">Descripción:</label>
+            <label for="txtAddress">Descripción de la empresa:</label>
             <textarea class="ckeditor"  name="description" rows="10" placeholder="Ingresa descripción"></textarea>
         </div>
         <button type="submit" class="btn btn-success my-4 btn-block">Crear</button>
-    </form>
+        </form>
+
+        @else
+        <h3 class="text-center">Ya enviaste una solicitud</h3>
+        <div class="text-center">
+            @if($supplier->estatus == 0)
+            <h5 style="color:orange;">Pendiente</h5>
+            @endif
+            @if($supplier->estatus == 1)
+            <h5 style="color:green;">Aprobada</h5>
+            @endif
+            @if($supplier->estatus == 2)
+            <h5 style="color:red;">Rechazada</h5>
+            @endif
+        </div>
+        <div class="card">
+            <h5>Tus datos</h5>
+            <p><b>Nombre:</b> {{ $supplier->name }}</p>
+            <!-- <p><b>Razón social:</b>  {{ $supplier->bussiness_name }}</p> -->
+            <p><b>Cashback:</b>  {{ $supplier->cashback }}</p>
+            <p><b>Descripción:</b>  {{ $supplier->description }}</p>
+            <p><b>Enviado el:</b>  {{ date('d/m/Y ',strtotime($supplier->created_at)) }}</p>
+        </div>
+        @endif
+
 @endsection

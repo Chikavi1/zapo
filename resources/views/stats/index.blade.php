@@ -22,7 +22,20 @@
             </div>
         </div>
     </div>
-
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card text-center">
+                <p>Proveedores</p>
+                <h3 style="color:#427AA1">{{$suppliers}}</h3>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card text-center">
+                <p>Usuarios</p>
+                <h3 style="color:#427AA1">{{$users}}</h3>
+            </div>
+        </div>
+    </div>
     
 </div>
 

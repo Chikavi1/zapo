@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <div class="container">
     
     <div class="row">
@@ -8,7 +8,7 @@
             <h2>Crear Movimiento</h2>
             <div class="form-group">
                 <label for="exampleInputEmail1">Número celular</label>
-                <input type="tel" class="form-control" name="cellphone" id="cellphone" placeholder="Ingresa Número">
+                <input type="tel" class="form-control" name="cellphone" id="cellphone" placeholder="Ingresa Número" onkeypress='validate(event)'>
                 <button class="btn btn-primary m-2 float-end" onClick="checkUser()">Buscar</button>
             </div>
 
@@ -19,7 +19,7 @@
             <form>  
                 <div class="form-group mt-4">
                     <label for="exampleInputEmail1">Monto</label>
-                    <input id="amount" type="tel" class="form-control" name="amount" placeholder="Ingresa Monto">
+                    <input min="100" id="amount" type="number" class="form-control" name="amount" placeholder="Ingresa Monto" onkeypress='validate(event)'>
                 </div>
             </form>
             <div class="row my-4">
@@ -42,7 +42,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Código Qr</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Código QR</h5>
       </div>
       <div class="row">
           <div class="col-md-3 offset-md-3 " style="margin-left:3em;">
@@ -60,10 +60,10 @@
 </div>
 
 <div class="modal fade" id="modalpass" tabindex="-1" role="dialog" aria-labelledby="modalpassLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Código Qr</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Contraseña</h5>
       </div>
       <div class="row">
           <h2 class="text-center">Ingresa contraseña</h2>
@@ -85,6 +85,27 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 <script>
+
+function validate(evt) {
+  var theEvent = evt || window.event;
+
+  // Handle paste
+  if (theEvent.type === 'paste') {
+      key = event.clipboardData.getData('text/plain');
+  } else {
+  // Handle key press
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode(key);
+  }
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
+
+
+
     $('#exampleModal').on('shown.bs.modal', function () {
   $('#exampleModal').trigger('focus')
 })
@@ -100,15 +121,30 @@ $('#verify').click(()=>{
       'password': $("#password").val(),
       'amount': $("#amount").val()
   };
-  url = "http://143.198.148.87/createTransaction";
+  url = "http://127.0.0.1:8000/createTransaction";
 
 
   $.post(url,data,function(r){
      console.log(r)
      if(r.status === 200){
-      location.reload();
+      Swal.fire(
+          '¡Movimiento exitoso!',
+          'Se ha generado el movimiento exitosamente!',
+          'success'
+
+        )
+        setTimeout(() => {
+          location.reload();
+        }, 2600)
+
+
      }else{
-      alert('contraseña incorrecta')
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '¡Contraseña incorrecta!',
+      })
+
      }
   });
 })
@@ -117,7 +153,7 @@ $('#verify').click(()=>{
         cellphone = $("#cellphone").val();
         $.ajax({
         type: 'GET', 
-        url: 'http://143.198.148.87/search_cellphone?cellphone='+cellphone,
+        url: 'http://127.0.0.1:8000/search_cellphone?cellphone='+cellphone,
         dataType: 'json',
         contentType: 'application/x-www-form-urlencoded', 
       

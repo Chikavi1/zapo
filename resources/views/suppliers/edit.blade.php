@@ -103,7 +103,7 @@
         <input type="hidden" name="id" value="2">
         <!-- se tiene que modificar -->
         @csrf
-        <button type="button" class="btn btn-danger" id="accept">Eliminar</button>
+        <button type="button" class="btn btn-danger" id="accept">Bloquear</button>
         </form>
  
     </div>
