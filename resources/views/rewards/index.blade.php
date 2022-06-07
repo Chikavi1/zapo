@@ -9,78 +9,49 @@
 
 @if(Auth::user()->type === 0)
 
-<a href="{{ url('rewards/create') }}" class="btn btn-primary mb-2">Crear Regalo</a>
-@elseif(Auth::user()->type === 1)
-<h2>Regalos que tenemos para ti</h2>
-@endif
-<!-- <table class="table table-bordered">
-        <tr>
-            <th>No</th>
-            <th>Nombre</th>
-            <th>Puntos</th>
-            <th>Descripción</th>
-            <th>Condiciones</th>
-            <th>Fotos</th>
-            <th width="280px">Acciones</th>
-        </tr>
-        @php
-            $i = 0;
-        @endphp
-        @foreach($rewards as $reward)
-            <tr>
-                <td>{{ $reward->id }}</td>
-                <td>{{ $reward->name }}</td>
-                <td>{{ $reward->points }}</td>
-                <td>{!! $reward->description !!}</td>
-                <td>{!! $reward->conditions !!}</td>
-                <td><img style="width:200px;" src="{{ URL::asset('public/photos/'.$reward->photos) }}" alt="imagen del regalo">  </td>                
-                <td>
-                    <form action="{{ route('rewards.destroy') }}" method="POST">
-                        <a class="btn btn-outline-info" href="{{ route('rewards.show',$reward->id) }}"><i class="fa-solid fa-eye"></i></a>
-                        <a class="btn btn-outline-primary" href="{{ route('rewards.edit',$reward->id) }}"><i class="fa-solid fa-pencil"></i></a>
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $reward->id }}">
-                        <button onClick="alert('¿estás seguro?')" type="submit" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i></button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-</table> -->
-    
+
+    <a href="{{ url('rewards/create') }}" class="btn btn-primary mb-2">Crear Regalo</a>
+    @elseif(Auth::user()->type === 1)
+    <h2>Regalos que tenemos para ti</h2>
+    @endif
+
+    @if(count($rewards) != 0)
 
     <div class="row">
-    @foreach($rewards as $reward)
+        @foreach($rewards as $reward)
 
-        <div class="col-xs-12 col-md-4">
-            <div class="card" style="width: 20rem;max-height:30em;height:30em;margin-top:1em">
-                <img class="card-img-top" style="max-height:15em;object-fit: cover;"  src="{{ URL::asset('public/photos/'.$reward->photos) }}"  alt="Imagenes del regalo">
-                <div class="card-body">
-                    <h5 class="text-capitalize card-title">{{ $reward->name }}</h5>
-                    <p class="text-success">Puntos {{ $reward->points }}</p>
-                    <p class="card-text">{!! $reward->description !!}</p>
-                    @if(Auth::user()->points >= $reward->points)
-                    <p class="text-center ">
-                        <button class="btn btn-success" data-toggle="modal" data-target="#qrmodal">
-                        Canjear
-                        </button>
-                    </p>
-                    @endif
-                    @if(Auth::user()->type === 0)
-                            <a class="btn btn-outline-info" href="{{ route('rewards.show',$reward->id) }}"><i class="fa-solid fa-eye"></i></a>
-                            <a class="btn btn-outline-primary" href="{{ route('rewards.edit',$reward->id) }}"><i class="fa-solid fa-pencil"></i></a>
-                            <button class="btn btn-danger" data-toggle="modal" data-target="#elimatemodal">
-                                <i class="fa-solid fa-trash-can"></i>
+            <div class="col-xs-12 col-md-4">
+                <div class="card" style="width: 20rem;max-height:30em;height:30em;margin-top:1em">
+                    <img class="card-img-top" style="max-height:15em;object-fit: cover;"  src="{{ URL::asset('public/photos/'.$reward->photos) }}"  alt="Imagenes del regalo">
+                    <div class="card-body">
+                        <h5 class="text-capitalize card-title">{{ $reward->name }}</h5>
+                        <p class="text-success">Puntos {{ $reward->points }}</p>
+                        <p class="card-text">{!! $reward->description !!}</p>
+                        @if(Auth::user()->points >= $reward->points)
+                        <p class="text-center ">
+                            <button class="btn btn-success" data-toggle="modal" data-id="{{ $reward->id }}" data-target="#modalReclaim">
+                            Canjear
                             </button>
-                    @else
-                        <p class="text-center"><a href="{{ route('rewards.show',$reward->id) }}">Ver</a></p>
-                    @endif
+                        </p>
+                        @endif
+
+                        @if(Auth::user()->type === 0)
+                                <a class="btn btn-outline-info" href="{{ route('rewards.show',$reward->id) }}"><i class="fa-solid fa-eye"></i></a>
+                                <a class="btn btn-outline-primary" href="{{ route('rewards.edit',$reward->id) }}"><i class="fa-solid fa-pencil"></i></a>
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#elimatemodal">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                        @else
+                            <p class="text-center"><a href="{{ route('rewards.show',$reward->id) }}">Ver</a></p>
+                        @endif
+                    </div>
                 </div>
             </div>
-        </div>
         @endforeach
     </div>
-    
-    
+    @else
+        <h2>No hay premios</h2>
+    @endif
 
 <div class="modal fade" id="elimatemodal" tabindex="-1" role="dialog" aria-labelledby="elimatemodalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -109,7 +80,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="qrmodal" tabindex="-1" role="dialog" aria-labelledby="qrmodalLabel" aria-hidden="true">
+<div class="modal fade" id="modalReclaim" tabindex="-1" role="dialog" aria-labelledby="modalReclaim" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -129,16 +100,24 @@
     </div>
   </div>
 </div>
+
+    
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 <script>
 
-    $('#accept').click(()=> {
+var id;
+$('#modalReclaim').on('show.bs.modal',function(e){
+    id = $(e.relatedTarget).data('id');    
+});
+
+$('#accept').click(()=> {
         var data = {
         '_token':'{!! csrf_token() !!}',
         'id_users': {!! Auth::user()->id !!},
-        'id_rewards': 1,
+        'id_rewards': id,
     };
+    console.log(data);
     url = "http://127.0.0.1:8000/createReclaim";
 
   $.post(url,data,function(r){

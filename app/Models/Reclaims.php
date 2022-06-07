@@ -13,4 +13,10 @@ class Reclaims extends Model
         'id_rewards',
         'token'
         ];
+
+
+    public function rewards()
+    {
+        return $this->belongsto('App\Models\Rewards','id_rewards','id');
+    }
 }

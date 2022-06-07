@@ -32,6 +32,9 @@
       @if(Auth::user())
       <ul class="navbar-nav">
       @if(Auth::user()->type == 0)
+      <!-- <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/users">Usuarios</a>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/stats">Estadisticas</a>
         </li>
@@ -52,6 +55,9 @@
         @endif
 
         @if(Auth::user()->type == 2)
+        <!-- <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/dispatcher">Despachadores</a>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/give_rewards">Dar Premios</a>
         </li>

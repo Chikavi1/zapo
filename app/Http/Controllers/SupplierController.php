@@ -36,7 +36,7 @@ class SupplierController extends Controller
             'cashback'=> $request->get('cashback'),
             // 'phone'=> $request->get('phone'),
             // 'password'=> $request->get('password'),
-            // 'description'=> $request->get('description'),
+            'description'=> $request->get('description'),
         ]);
  
         $supplier->save();

@@ -6,6 +6,7 @@ use App\Http\Controllers\RewardsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovementsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DispatcherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,15 @@ Route::get('/reset',[HomeController::class,'reset'])->name('reset');
 Route::get('/stats',[HomeController::class,'stats'])->name('stats');
 Route::get('/edit-landing',[HomeController::class,'editLanding'])->name('editLanding');
 Route::patch('/edit-landing/store',[HomeController::class, 'storeLanding'])->name('storeLanding');
+
+
+Route::get('/dispatcher',[DispatcherController::class,'index'])->name('dispatcher');
+Route::get('/dispatcher/create',[DispatcherController::class,'create'])->name('dispatcher.create');
+Route::post('/dispatcher/store',[DispatcherController::class,'store'])->name('dispatcher.store');
+
+
+Route::get('/users',[UserController::class,'index'])->name('users');
+Route::post('/users/destroy',[UserController::class,'destroy'])->name('users.destroy');
 
 
 Route::post('/createTransaction',[HomeController::class,'transaction'])->name('transaction');

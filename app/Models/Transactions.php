@@ -15,4 +15,6 @@ class Transactions extends Model
         'amount',
         'status'
         ];
+
+      
 }

@@ -16,13 +16,20 @@
             <div class="card" style="width: 18rem;max-height:30em;height:30em;margin-top:1em">
                 <!-- <img class="card-img-top" style="max-height:15em;object-fit: cover;"  src="{{ URL::asset('public/photos/'.$reward->photos) }}"  alt="Imagenes del regalo"> -->
                 <div class="card-body">
-                {!! QrCode::size(140)->generate($reward->token); !!}
+                    <img class="img-fluid" src="{{ URL::asset('public/photos/'.$reward->rewards->photos) }}" alt="">
+                  <p class="text-bold text-capitalize">{{ $reward->rewards->name }}</p>
+                    <p class="text-center">
+                        <!-- {!! QrCode::size(140)->generate($reward->token); !!} -->
+                    </p>
+                    <p>Generado el dia {{ date('d/m/Y',strtotime($reward->created_at ))}}</p>
                     @if($reward->status == 1)
-                        <p class="text-warning">Pendiente</p>
-                        <p>Generado el dia {{ $reward->created_at }}</p>
+                        <p class="text-warning text-center">Pendiente</p>
                     @else
-    <p class="text-success">Canjeado</p>
+                    <p class="text-success">Canjeado</p>
                     @endif
+                    <p class="text-center">
+                        <a href="" >Ver más</a>
+                    </p>
                     <!-- <h5 class="card-title">{{ $reward->name }}</h5>
                     <p class="text-success">Puntos {{ $reward->points }}</p>
                     <p class="card-text">{!! $reward->description !!}</p>

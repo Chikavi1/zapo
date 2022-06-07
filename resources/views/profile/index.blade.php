@@ -22,7 +22,7 @@
                         </li>
                         <li class="list-group-item">
                             <a href="/convert">
-                                Convertirte en provedor
+                                Convertirte en proveedor
                             </a>     
                         </li>
                     @endif
@@ -121,7 +121,7 @@
                         </li>
                         <li class="list-group-item">
                         <a href="/convert">
-                                Convertirte en provedor
+                                Convertirte en proveedor
                             </a>  
                         </li>
                     @endif
