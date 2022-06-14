@@ -21,6 +21,10 @@
                     <label for="exampleInputEmail1">Monto</label>
                     <input min="100" id="amount" type="number" class="form-control" name="amount" placeholder="Ingresa Monto" onkeypress='validate(event)'>
                 </div>
+                <div class="form-group mt-2">
+                    <label for="exampleInputEmail1">Folio</label>
+                    <input maxLength="15" id="folio"  class="form-control" name="folio" placeholder="Ingresa Folio">
+                </div>
             </form>
             <div class="row my-4">
                 <div class="col">
@@ -113,6 +117,13 @@ function validate(evt) {
 
 var userId;
 
+var domain;
+if(window.location.hostname === "127.0.0.1"){
+  domain = 'http://127.0.0.1:8000';
+}else{
+  domain = "https://cashpoints.com.mx/";
+}
+
 $('#verify').click(()=>{
   var data = {
       '_token':'{!! csrf_token() !!}',
@@ -121,7 +132,7 @@ $('#verify').click(()=>{
       'password': $("#password").val(),
       'amount': $("#amount").val()
   };
-  url = "http://143.198.148.87/createTransaction";
+  url = domain+"/createTransaction";
 
 
   $.post(url,data,function(r){
@@ -153,7 +164,7 @@ $('#verify').click(()=>{
         cellphone = $("#cellphone").val();
         $.ajax({
         type: 'GET', 
-        url: 'http://143.198.148.87/search_cellphone?cellphone='+cellphone,
+        url: domain+'/search_cellphone?cellphone='+cellphone,
         dataType: 'json',
         contentType: 'application/x-www-form-urlencoded', 
       
