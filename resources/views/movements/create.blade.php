@@ -121,7 +121,7 @@ var domain;
 if(window.location.hostname === "127.0.0.1"){
   domain = 'http://127.0.0.1:8000';
 }else{
-  domain = "https://cashpoints.com.mx/";
+  domain = "https://cashpoints.com.mx";
 }
 
 $('#verify').click(()=>{
