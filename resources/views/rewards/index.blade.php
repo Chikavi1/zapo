@@ -26,6 +26,7 @@
                     <div class="card-body">
                         <h5 class="text-capitalize card-title">{{ $reward->name }}</h5>
                         <p class="text-success">Puntos {{ $reward->points }}</p>
+                        <p class="card-text">Creado por: {{ $reward->users?$reward->users->name:'Admin' }}</p>
                         <p class="card-text">{!! $reward->description !!}</p>
                         @if(Auth::user()->points >= $reward->points)
                         <p class="text-center ">

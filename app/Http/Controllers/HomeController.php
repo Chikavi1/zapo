@@ -163,6 +163,8 @@ class HomeController extends Controller
         $transaction->operador_id = $request->operador_id;
         $transaction->amount = $request->amount;
         $transaction->status = 1;
+        $transaction->folio = $request->folio;
+
         $transaction->save();
 
         $user->points += $points;

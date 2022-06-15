@@ -13,7 +13,8 @@ class Transactions extends Model
         'client_id',
         'operador_id',
         'amount',
-        'status'
+        'status',
+        'folio'
         ];
 
       

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Rewards;
 use Illuminate\Support\Str;
+use Auth;
 
 class RewardsController extends Controller
 {
@@ -45,6 +46,7 @@ class RewardsController extends Controller
         'description' => $request->get('description'),
         'photos'      => $result?$result:'default.png',
         'points'      => $request->get('points'),
+        'user_id'     => Auth::user()->id
     ]);
 
     $rewards->save();
@@ -82,7 +84,7 @@ class RewardsController extends Controller
         $reward->description           = $request->get('description');
         $reward->conditions            = $request->get('conditions');
         $reward->points                = $request->get('points');
-
+        $reward->user_id                = $request->get('user_id');
         $reward->update();
         return redirect('/rewards')->with('success', 'Se ha actualizado correctamente.');
 

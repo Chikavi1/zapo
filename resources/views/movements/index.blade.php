@@ -7,6 +7,7 @@
             <tr>
                 <th>Fecha</th>
                 <th>Cantidad</th>
+                <th>Folio</th>
                 <th>Estatus</th>
             </tr>
             @php
@@ -15,6 +16,7 @@
             @foreach ($movements as $movement)
                 <tr>
                     <td>{{ date('d/m/Y h:i a',strtotime($movement->created_at))  }}</td>
+                    <td>{{ $movement->folio }}</td>
                     <td>{{ $movement->amount }}</td>
                     <td>
                         @if($movement->status == 1)

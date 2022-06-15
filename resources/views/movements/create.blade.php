@@ -17,13 +17,13 @@
                 <small>¿Es la persona?</small>
             
             <form>  
+              <div class="form-group mt-2">
+                  <label for="exampleInputEmail1">Folio</label>
+                  <input maxLength="15" id="folio"  class="form-control" name="folio" placeholder="Ingresa Folio">
+              </div>
                 <div class="form-group mt-4">
                     <label for="exampleInputEmail1">Monto</label>
                     <input min="100" id="amount" type="number" class="form-control" name="amount" placeholder="Ingresa Monto" onkeypress='validate(event)'>
-                </div>
-                <div class="form-group mt-2">
-                    <label for="exampleInputEmail1">Folio</label>
-                    <input maxLength="15" id="folio"  class="form-control" name="folio" placeholder="Ingresa Folio">
                 </div>
             </form>
             <div class="row my-4">
@@ -130,6 +130,7 @@ $('#verify').click(()=>{
       'id': userId,
       'operador_id': "{{ Auth::user()->id }}",
       'password': $("#password").val(),
+      'folio': $("#folio").val(),
       'amount': $("#amount").val()
   };
   url = domain+"/createTransaction";

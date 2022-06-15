@@ -11,7 +11,7 @@ class AddFolioToTransactions extends Migration
     {
         if(!Schema::hasColumn('transactions', 'folio')) {
             Schema::table('transactions', function (Blueprint $table) {
-                $table->integer('folio');
+                $table->string('folio');
             });
         }
     }

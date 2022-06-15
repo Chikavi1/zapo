@@ -14,6 +14,12 @@ class Rewards extends Model
         'description',
         'conditions',
         'photos',
-        'points'
+        'points',
+        'user_id'
         ];
+
+    public function users()
+    {
+        return $this->belongsto('App\Models\User','user_id','id');
+    }
 }
