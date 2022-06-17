@@ -118,10 +118,11 @@ function validate(evt) {
 var userId;
 
 var domain;
+console.log(window.location.hostname);
 if(window.location.hostname === "127.0.0.1"){
   domain = 'http://127.0.0.1:8000';
 }else{
-  domain = "https://cashpoints.com.mx";
+  domain = window.location.hostname;
 }
 
 $('#verify').click(()=>{
