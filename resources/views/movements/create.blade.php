@@ -117,13 +117,6 @@ function validate(evt) {
 
 var userId;
 
-var domain;
-console.log(window.location.hostname);
-if(window.location.hostname === "127.0.0.1"){
-  domain = 'http://127.0.0.1:8000';
-}else{
-  domain = window.location.hostname;
-}
 
 $('#verify').click(()=>{
   var data = {
@@ -134,7 +127,7 @@ $('#verify').click(()=>{
       'folio': $("#folio").val(),
       'amount': $("#amount").val()
   };
-  url = domain+"/createTransaction";
+  url = "https://www.cashpoints.com.mx/createTransaction";
 
 
   $.post(url,data,function(r){
@@ -166,7 +159,7 @@ $('#verify').click(()=>{
         cellphone = $("#cellphone").val();
         $.ajax({
         type: 'GET', 
-        url: domain+'/search_cellphone?cellphone='+cellphone,
+        url: 'https://www.cashpoints.com.mx/search_cellphone?cellphone='+cellphone,
         dataType: 'json',
         contentType: 'application/x-www-form-urlencoded', 
       
