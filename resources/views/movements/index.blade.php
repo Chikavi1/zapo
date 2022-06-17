@@ -6,8 +6,8 @@
         <table class="table table-bordered mt-4">
             <tr>
                 <th>Fecha</th>
-                <th>Cantidad</th>
                 <th>Folio</th>
+                <th>Cantidad</th>
                 <th>Estatus</th>
             </tr>
             @php
