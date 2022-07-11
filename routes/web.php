@@ -80,3 +80,4 @@ Route::post('/createReclaim',[HomeController::class,'reclaim'])->name('reclaim')
 Route::get('/redeem',[HomeController::class,'redeem'])->name('redeem');
 
 Route::get('/convert',[HomeController::class,'convert'])->name('convert');
+

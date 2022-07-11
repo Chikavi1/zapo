@@ -98,4 +98,6 @@ class RewardsController extends Controller
         $reward->update();
         return redirect('/rewards')->with('success', 'Se ha eliminado correctamente.');
     }
+
+    
 }

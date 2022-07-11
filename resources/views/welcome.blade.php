@@ -70,23 +70,31 @@
  
 </div>
 </div>
-<div class="container mt-4" > 
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">{{ $config->title }}</h1>
-    <p class="lead">{{ $config->subtitle }}</p>
+<div class="container mt-4"  style="background:#1e3a64;padding:2em;color
+:white;"> 
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4 text-bold">{{ $config->title }}</h1>
+      <p class="lead">{{ $config->subtitle }}</p>
+    </div>
+  </div>
+  <div >
+  
+    <p class="text-center">
+      
+      <a class="btn btn-warning text-white"  href="{{ route('register') }}">
+        Registrarme
+      </a>
+    </p>
+    
+    <p class="text-center">
+      o
+      <a class="text-white" style="text-decoration:none;" href="{{ route('login') }}" >Inicia Sesión</a>
+    </p>
   </div>
 </div>
-</div>
 
-<p class="text-center">
-    <a href="{{ route('login') }}" class="  btn btn-success">Inicia Sesión</a>
-    <a href="{{ route('register') }}" class="  btn btn-primary">
-        Registrarme
-    </a>
-
-</p>
-
+  
 <div class="container">
     <h2 style="margin:2.5em 0em;">Conoce los premios que tenemos para ti</h2>
     

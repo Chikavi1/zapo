@@ -9,11 +9,11 @@
             <div class="form-group">
                 <label for="exampleInputEmail1">Número celular</label>
                 <input type="tel" class="form-control" name="cellphone" id="cellphone" placeholder="Ingresa Número" onkeypress='validate(event)'>
-                <button class="btn btn-primary m-2 float-end" onClick="checkUser()">Buscar</button>
+                <button id="checkuserButton" class="btn btn-primary m-2 float-end" onClick="checkUser()">Buscar</button>
             </div>
 
             <div id="user" style="display:none;" class="text-center" >
-                <h4 style="margin-top:3em;" id="name_user"></h4>
+                <h4 style="margin-top:3em;color:#1e3a64" id="name_user"></h4>
                 <small>¿Es la persona?</small>
             
             <form>  
@@ -26,13 +26,13 @@
                     <input min="100" id="amount" type="number" class="form-control" name="amount" placeholder="Ingresa Monto" onkeypress='validate(event)'>
                 </div>
             </form>
-            <div class="row my-4">
+            <div class="row my-4" >
                 <div class="col">
                     <button class="btn btn-success w-100" data-toggle="modal" data-target="#modalpass">Contraseña</button>
                 </div>
                 <div class="col">
                 <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#qrmodal">
-                Códigos QR
+                Código QR
                 </button>
                    
                 </div>
@@ -89,6 +89,14 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 <script>
+
+$("#cellphone").keyup(function() {
+ if($(this).val().length > 7) {
+    $('#checkuserButton').css({display: "block"});
+   }else{
+    $('#checkuserButton').css({display: "none"});
+   }
+ });
 
 function validate(evt) {
   var theEvent = evt || window.event;
@@ -164,9 +172,12 @@ $('#verify').click(()=>{
         contentType: 'application/x-www-form-urlencoded', 
       
         success: function (data) {
+          if(data.length != 0){
+
+            console.log(data);
+          
             $("#user").show();
             userId = data[0].id;
-            // console.log(data);
             name_user.html('');
             $.each(data, function(index, item) {
             name_user.html(''); //clears name_user for new data
@@ -175,6 +186,9 @@ $('#verify').click(()=>{
           });
                 name_user.append('<br>');
             });
+          }else{
+            alert('usuario no existe')
+          }
         },error:function(err){ 
              console.log(err);
         }

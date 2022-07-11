@@ -11,7 +11,8 @@ class Reclaims extends Model
     protected $fillable = [
         'id_users',
         'id_rewards',
-        'token'
+        'token',
+        'status'
         ];
 
 
