@@ -10,7 +10,7 @@
 
     <h3 class="text-center">Editar Página Principal</h3>
 
-    <form action="{{ url('edit-landing/store') }}" method="POST" enctype="multipart/form-data">
+    <form class="container" action="{{ url('edit-landing/store') }}" method="POST" enctype="multipart/form-data">
 
     @method('PATCH')    
         @csrf
@@ -19,13 +19,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="txtFirstName">Titulo</label>
-                    <input type="text" class="form-control" value="{{$config->title}}" placeholder="Ingresa Titulo" name="title">
+                    <input type="text" class="form-control" value="{{$config->title}}" placeholder="Ingresa Titulo" name="title" required>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="txtFirstName">Subtitulo</label>
-                    <input type="text" value="{{$config->subtitle}}" class="form-control"  placeholder="Ingresa subtitulo" name="subtitle">
+                    <input type="text" value="{{$config->subtitle}}" class="form-control"  placeholder="Ingresa subtitulo" name="subtitle" required>
                 </div>
             </div>
     </div>
