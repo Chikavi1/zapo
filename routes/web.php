@@ -81,3 +81,7 @@ Route::get('/redeem',[HomeController::class,'redeem'])->name('redeem');
 
 Route::get('/convert',[HomeController::class,'convert'])->name('convert');
 
+Route::get('/nosotros',[HomeController::class,'nosotros'])->name('nosotros');
+
+Route::get('/howworks',[HomeController::class,'howworks'])->name('howworks');
+
