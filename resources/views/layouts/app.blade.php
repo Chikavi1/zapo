@@ -24,7 +24,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light " style="background-color:#1e3a64;border: none !important; outline: none !important;">
   <div class="container-fluid  text-center"  >
-    <a class="navbar-brand text-white " href="/home">Bonos</a>
+    <a class="navbar-brand text-white " href="/">Bonos</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon text-white"></span>
       <i class="fa-solid fa-bars text-white"></i>
@@ -89,7 +89,7 @@
     </div>
   </div>
 </nav>
-<div class="container mt-4">
+<div class=" mt-4">
     @yield('content')
 </div>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
