@@ -1,7 +1,7 @@
 @extends('layouts.app')
  
 @section('content')
-    <div class="row">
+    <div class="row container">
         <div class="col-lg-11">
             <h2 class="text-capitalize">{{ $supplier->name }}</h2>
         </div>
