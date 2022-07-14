@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <title>Bonos</title>
-   
-  <link
-  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
-  rel="stylesheet"
-/>
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+@extends('layouts.app')
 
-
-</head>
+@section('content')
 <body>
 @if (Route::has('login'))
                 <!-- <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
@@ -70,7 +58,7 @@
  
 </div>
 </div>
-<div class="container mt-4"  style="background:#1e3a64;padding:2em;color
+<div class=" mt-4"  style="background:#1e3a64;padding:2em;color
 :white;"> 
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -78,6 +66,7 @@
       <p class="lead">{{ $config->subtitle }}</p>
     </div>
   </div>
+  @if(!Auth::user())
   <div >
   
     <p class="text-center">
@@ -92,6 +81,7 @@
       <a class="text-white" style="text-decoration:none;" href="{{ route('login') }}" >Inicia Sesión</a>
     </p>
   </div>
+  @endif
 </div>
 
   
@@ -113,6 +103,8 @@
         @endforeach
     </div>
 </div>
+@if(!Auth::user())
+
 <h2 class="text-center mt-4">¡Registrate ya!</h2>
 <p class="text-center">
 
@@ -120,9 +112,9 @@
         Registrarme
     </a>
 </p>
-
+@endif
     
-            @endif
+@endif
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -134,4 +126,4 @@ ride:true
 </script>
 
 </body>
-</html>
+@endsection
