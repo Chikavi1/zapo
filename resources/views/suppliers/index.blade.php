@@ -13,7 +13,7 @@
 <div class="table-responsive">
     <table class="table table-bordered table-sm">
             <tr>
-                <th >Acciones</th>
+                <th>Acciones</th>
                 <th>Razon Social</th>
                 <th>Cashback</th>
                 <th>Estatus</th>

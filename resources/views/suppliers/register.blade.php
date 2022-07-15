@@ -1,6 +1,8 @@
 @extends('layouts.app')
  
 @section('content')
+<div class="container">
+
 
 @if ($errors->any())
         <div class="alert alert-danger">
@@ -12,7 +14,7 @@
             </ul>
         </div>
     @endif
-    <form action="{{ url('suppliers/register') }}" method="POST">
+    <form action="{{ url('suppliers/register') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="card text-white bg-warning mb-3">
@@ -39,8 +41,13 @@
         </div>
        
         <div class="form-group mt-4">
-                <label for="txtLastName">Cashback:</label>
-                <input type="number" min="1" max="5" class="form-control" placeholder="Ingresa cashback" name="cashback"> 
+                <label for="txtLastName">Porcentaje de Retorno:</label>
+                <input type="number" min="1" max="5" class="form-control" placeholder="Ingresa Porcentaje de Retorno" name="cashback"> 
+        </div> 
+
+        <div class="form-group mt-4">
+                <label for="txtLastName">Foto</label>
+                <input type="file" class="form-control" placeholder="Ingresa Foto" name="photo"> 
         </div> 
         
         <div class="form-group mt-4">
@@ -67,10 +74,10 @@
             <h5>Tus datos</h5>
             <p><b>Nombre:</b> {{ $supplier->name }}</p>
             <!-- <p><b>Razón social:</b>  {{ $supplier->bussiness_name }}</p> -->
-            <p><b>Cashback:</b>  {{ $supplier->cashback }}</p>
+            <p><b>Porcentaje de Retorno:</b>  {{ $supplier->cashback }}</p>
             <p><b>Descripción:</b>  {{ $supplier->description }}</p>
             <p><b>Enviado el:</b>  {{ date('d/m/Y ',strtotime($supplier->created_at)) }}</p>
         </div>
         @endif
-
+</div>
 @endsection

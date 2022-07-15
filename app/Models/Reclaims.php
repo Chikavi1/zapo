@@ -12,7 +12,8 @@ class Reclaims extends Model
         'id_users',
         'id_rewards',
         'token',
-        'status'
+        'status',
+        'id_supplier'
         ];
 
 

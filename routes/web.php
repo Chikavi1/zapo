@@ -68,6 +68,10 @@ Route::patch('/edit-landing/store',[HomeController::class, 'storeLanding'])->nam
 Route::get('/dispatcher',[DispatcherController::class,'index'])->name('dispatcher');
 Route::get('/dispatcher/create',[DispatcherController::class,'create'])->name('dispatcher.create');
 Route::post('/dispatcher/store',[DispatcherController::class,'store'])->name('dispatcher.store');
+Route::get('/dispatcher/edit/{id}',[DispatcherController::class,'edit'])->name('dispatcher.edit');
+Route::patch('/dispatcher/update',[DispatcherController::class,'update'])->name('dispatcher.update');
+Route::post('/dispatcher/destroy',[DispatcherController::class, 'destroy'])->name('dispatcher.destroy');
+
 
 
 Route::get('/users',[UserController::class,'index'])->name('users');

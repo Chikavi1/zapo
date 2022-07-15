@@ -18,6 +18,11 @@ class Supplier extends Model
         'cashback',
         'phone',
         'password',
-        'description'
+        'description',
+        'photo'
         ];
+
+        public function users(){
+            return $this->belongsto('App\Models\User','user_id','id');
+        }
 }

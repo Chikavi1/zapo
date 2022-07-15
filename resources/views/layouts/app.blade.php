@@ -59,11 +59,11 @@
         @endif
 
         @if(Auth::user()->type == 2)
-        <!-- <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/dispatcher">Despachadores</a>
-        </li> -->
         <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="/give_rewards">Dar Premios</a>
+          <a class="nav-link text-white" aria-current="page" href="/dispatcher">Despachadores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="/give_rewards">Canjear Premios</a>
         </li>
         @endif
 

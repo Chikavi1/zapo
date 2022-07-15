@@ -135,8 +135,9 @@ $('#verify').click(()=>{
       'folio': $("#folio").val(),
       'amount': $("#amount").val()
   };
-  url = "https://www.cashpoints.com.mx/createTransaction";
+  url = "{{ URL::to('/createTransaction') }}";
 
+ 
 
   $.post(url,data,function(r){
      console.log(r)
@@ -164,10 +165,11 @@ $('#verify').click(()=>{
 })
 
     function checkUser(){
+
         cellphone = $("#cellphone").val();
         $.ajax({
         type: 'GET', 
-        url: 'https://www.cashpoints.com.mx/search_cellphone?cellphone='+cellphone,
+        url: "{{ URL::to('/search_cellphone?cellphone=') }}"+cellphone, // https://www.cashpoints.com.mx/'+cellphone,
         dataType: 'json',
         contentType: 'application/x-www-form-urlencoded', 
       

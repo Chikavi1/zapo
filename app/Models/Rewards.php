@@ -18,8 +18,7 @@ class Rewards extends Model
         'user_id'
         ];
 
-    public function users()
-    {
+    public function users(){
         return $this->belongsto('App\Models\User','user_id','id');
     }
 }

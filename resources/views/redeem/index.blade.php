@@ -16,7 +16,7 @@
             <div class="card" style="width: 18rem;max-height:30em;height:30em;margin-top:1em">
                 <!-- <img class="card-img-top" style="max-height:15em;object-fit: cover;"  src="{{ URL::asset('public/photos/'.$reward->photos) }}"  alt="Imagenes del regalo"> -->
                 <div class="card-body">
-                    <img class="img-fluid" src="{{ URL::asset('public/photos/'.$reward->rewards->photos) }}" alt="">
+                    <img style="width:100% !important;max-height:15em;object-fit: cover;" class="img-fluid" src="{{ URL::asset('public/photos/'.$reward->rewards->photos) }}" alt="">
                   <p class="text-bold text-capitalize">{{ $reward->rewards->name }}</p>
                     <p class="text-center">
                         <!-- {!! QrCode::size(140)->generate($reward->token); !!} -->
@@ -28,7 +28,7 @@
                     <p class="text-success">Canjeado</p>
                     @endif
                     <p class="text-center">
-                        <a href="" >Ver más</a>
+                        <!-- <a href="" >Ver más</a> -->
                     </p>
                     <!-- <h5 class="card-title">{{ $reward->name }}</h5>
                     <p class="text-success">Puntos {{ $reward->points }}</p>

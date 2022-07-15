@@ -27,9 +27,9 @@ class HomeController extends Controller
 
     public function welcome(){
         $config = Config::all()->first();
-        $latestRewards = Rewards::all();
-        // dd($latestRewards);
-        return view('welcome',compact('config','latestRewards'));
+        $latestRewards = Rewards::orderBy('id', 'desc')->take(3)->get();
+        $latestSuppliers = Supplier::orderBy('id', 'desc')->take(4)->get();
+        return view('welcome',compact('config','latestRewards','latestSuppliers'));
 
     }
 
@@ -48,6 +48,9 @@ class HomeController extends Controller
 
     public function editProfile(){
         $user = Auth::user();
+        if($user->type == 2){
+            $supplier = Supplier::where('user_id',Auth::user()->id);
+        }
         return view('profile.edit',compact('user'));
     }
 
@@ -180,12 +183,13 @@ class HomeController extends Controller
     }
 
     public function reclaim(Request $request){
+        $reward = Rewards::find($request->id_rewards);
         $reclaims = new Reclaims();
         $reclaims->id_users = $request->id_users;
         $reclaims->id_rewards = $request->id_rewards;
         $reclaims->token = Str::random(32);
+        $reclaims->id_supplier = $reward->user_id;
         $reclaims->status = 1;
-        $reward = Rewards::find($request->id_rewards);
         $user = User::find($request->id_users);
         $user->points -= $reward->points;
         $user->save();

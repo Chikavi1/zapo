@@ -24,8 +24,10 @@ class User extends Authenticatable
         'cellphone',
         'type',
         'address',
-        'status',
-        'points'
+        'estatus',
+        'points',
+        'id_supplier'
+
     ];
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier;
+use App\Models\Rewards;
+
 use Illuminate\Http\Request;
 use Auth;
 
@@ -26,10 +28,18 @@ class SupplierController extends Controller
             'business_name'=> 'required',
             'cashback' => 'required'
         ]);
- 
+        $result;
+        if($request->file('photo')){
+            $file = $request->file('photo');
+            $filename= date('YmdHi').'.png';
+            $file->move(public_path('public/photos'), $filename);
+            $result = $filename;
+        }
+
         $supplier = new Supplier([
             'user_id' => Auth::user()->id,
             'name' => $request->get('name'),
+            'photo'      => $result?$result:'default.png',
             'business_name'=> $request->get('business_name'),
             // 'representative_name'=> $request->get('representative_name'),
             // 'email'=> $request->get('email'),
@@ -69,7 +79,8 @@ class SupplierController extends Controller
     public function show(Request $req)
     {
         $supplier = Supplier::find($req->id);
-        return view('suppliers.show',compact('supplier'));
+        $rewards = Rewards::where('user_id',$supplier->id)->get();
+        return view('suppliers.show',compact('supplier','rewards'));
     }
 
     public function edit(Request $req)

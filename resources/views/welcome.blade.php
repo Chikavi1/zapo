@@ -113,6 +113,18 @@
     </a>
 </p>
 @endif
+<h2 class="text-center mt-4">Marcas Participantes</h2>
+<div class="row container" style="margin:3em 0em;">
+  @foreach($latestSuppliers as $supplier)
+    <div class="col-md-2 offset-md-1" >
+      <a href="suppliers/show/{{ $supplier->id }}">
+        
+        <img style="width:195px;max-width:195px;height:150px;max-height:150px;object-fit:cover;" 
+        src="{{ URL::asset('public/photos/'.$supplier->photo) }}" alt="image">
+      </a>
+    </div>
+@endforeach
+</div>
     
 @endif
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
