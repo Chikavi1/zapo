@@ -7,12 +7,12 @@
     </div>
 @endif
 
-@if(Auth::user()->type === 0)
+@if(Auth::user()->type === 0 || Auth::user()->type === 2)
 
 
     <a href="{{ url('rewards/create') }}" class="btn btn-primary mb-2">Crear Regalo</a>
     @elseif(Auth::user()->type === 1)
-    <h2>Regalos que tenemos para ti</h2>
+      <h2>Regalos que tenemos para ti</h2>
     @endif
 
     @if(count($rewards) != 0)
@@ -30,16 +30,16 @@
                         <p class="card-text">{!! $reward->description !!}</p>
                         @if(Auth::user()->points >= $reward->points)
                         <p class="text-center ">
-                            <button class="btn btn-success" data-toggle="modal" data-id="{{ $reward->id }}" data-target="#modalReclaim">
+                            <button class=" btn btn-success" data-toggle="modal" data-id="{{ $reward->id }}" data-target="#modalReclaim">
                             Canjear
                             </button>
                         </p>
                         @endif
 
-                        @if(Auth::user()->type === 0)
+                        @if(Auth::user()->type === 0 || Auth::user()->type === 2)
                                 <a class="btn btn-outline-info" href="{{ route('rewards.show',$reward->id) }}"><i class="fa-solid fa-eye"></i></a>
                                 <a class="btn btn-outline-primary" href="{{ route('rewards.edit',$reward->id) }}"><i class="fa-solid fa-pencil"></i></a>
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#elimatemodal">
+                                <button class="btn btn-danger delete" data-toggle="modal" data-target="#elimatemodal" data-id="{{ $reward->id }}">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>
                         @else
@@ -51,7 +51,7 @@
         @endforeach
     </div>
     @else
-        <h2>No hay premios</h2>
+        <h2 class="text-center">No hay premios</h2>
     @endif
 
 <div class="modal fade" id="elimatemodal" tabindex="-1" role="dialog" aria-labelledby="elimatemodalLabel" aria-hidden="true">
@@ -70,10 +70,9 @@
       <div class="modal-footer">
         <button type="button" class="btn" data-dismiss="modal">Cerrar</button>
         <form action="{{ route('rewards.destroy') }}" method="POST">
-        <input type="hidden" name="id" value="2">
-        <!-- se tiene que modificar -->
-        @csrf
-        <button type="button" class="btn btn-danger">Eliminar</button>
+          @csrf
+          <input type="hidden" name="id" id="id">
+          <input type="submit" class="btn btn-danger" value="Eliminar"/>
         </form>
  
     </div>
@@ -106,6 +105,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 <script>
+
+$(".delete").on("click",function(){
+        var id = $(this).data('id');
+        $(".modal-footer #id").val( id );
+    });
 
 var id;
 $('#modalReclaim').on('show.bs.modal',function(e){

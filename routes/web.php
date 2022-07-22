@@ -13,7 +13,7 @@ use App\Http\Controllers\DispatcherController;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can update web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
@@ -29,6 +29,7 @@ Route::get('/suppliers/edit/{id}',[SupplierController::class, 'edit'])->name('su
 Route::get('/suppliers/show/{id}',[SupplierController::class, 'show'])->name('suppliers.show');
 Route::delete('/suppliers/destroy',[SupplierController::class, 'destroy'])->name('suppliers.destroy');
 Route::post('suppliers/register',[SupplierController::class,'register'])->name('suppliers.register');
+Route::post('suppliers/available',[SupplierController::class,'available'])->name('suppliers.available');
 
 Auth::routes();
 

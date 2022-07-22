@@ -12,7 +12,7 @@ class RewardsController extends Controller
     
     public function index()
     {
-      $rewards = Rewards::where('estatus',1)->get();
+      $rewards = Rewards::where('estatus',1)->where('user_id',Auth::user()->id)->get();
       return view('rewards.index',compact('rewards'));
     }
 
@@ -70,7 +70,6 @@ class RewardsController extends Controller
 
     public function update(Request $request)
     {
-       
         $reward = Rewards::find($request->id);
         $result;
         if($request->file('photos')){
@@ -84,7 +83,7 @@ class RewardsController extends Controller
         $reward->description           = $request->get('description');
         $reward->conditions            = $request->get('conditions');
         $reward->points                = $request->get('points');
-        $reward->user_id                = $request->get('user_id');
+        $reward->user_id               = Auth::user()->id;
         $reward->update();
         return redirect('/rewards')->with('success', 'Se ha actualizado correctamente.');
 

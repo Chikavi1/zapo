@@ -52,7 +52,7 @@
         </li>
         @endif
 
-        @if(Auth::user()->type != 2)
+        @if(Auth::user()->type != 3)
         <li class="nav-item">
           <a class="nav-link active text-white" aria-current="page" href="/rewards">Premios</a>
         </li>

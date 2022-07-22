@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Supplier;
 use App\Models\Rewards;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -116,5 +116,16 @@ class SupplierController extends Controller
     {
         $supplier->delete();
         return redirect('/suppliers')->with('success', 'Se ha eliminado correctamente');
+    }
+
+    public function available(Request $request)
+    {
+        $supplier = Supplier::find($request->id);
+        $user = User::find($supplier->user_id);
+        $user->type = 2;
+        $user->save();
+        $supplier->estatus = 1;
+        $supplier->save();
+        return redirect('/suppliers')->with('success', 'Se ha actualizado correctamente');
     }
 }
