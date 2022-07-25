@@ -125,7 +125,7 @@ $('#accept').click(()=> {
         'id_rewards': id,
     };
     console.log(data);
-    url =  {{URL::to('/createReclaim')}};
+    url =  '{{URL::to('/createReclaim')}}';
 
   $.post(url,data,function(r){
      console.log(r)
