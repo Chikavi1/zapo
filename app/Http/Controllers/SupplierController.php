@@ -97,15 +97,10 @@ class SupplierController extends Controller
             'cashback' => 'required'
         ]);
  
- 
         $supplier = Supplier::find($request->id);
         $supplier->name                  = $request->get('name');
         $supplier->business_name         = $request->get('business_name');
-        // $supplier->representative_name   = $request->get('representative_name');
-        // $supplier->email                 = $request->get('email');
         $supplier->cashback              = $request->get('cashback');
-        // $supplier->phone                 = $request->get('phone');
-        // $supplier->password              = $request->get('password');
         $supplier->description           = $request->get('description');
         $supplier->update();
  

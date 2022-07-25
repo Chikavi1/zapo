@@ -47,8 +47,8 @@
        
        
         <div class="form-group">
-                <label for="txtLastName">Cashback:</label>
-                <input type="number" min="1" max="5" class="form-control" placeholder="Ingresa cashback" name="cashback"> 
+                <label for="txtLastName">Porcentaje de retorno:</label>
+                <input type="number" min="1" max="5" class="form-control" placeholder="Ingresa porcentaje de retorno" name="cashback"> 
         </div> 
        
         <div class="row">

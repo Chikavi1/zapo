@@ -76,6 +76,10 @@ Route::post('/dispatcher/destroy',[DispatcherController::class, 'destroy'])->nam
 
 
 Route::get('/users',[UserController::class,'index'])->name('users');
+Route::get('/users/create',[UserController::class,'create'])->name('users.create');
+Route::post('/users/store',[UserController::class,'store'])->name('users.store');
+Route::get('/users/edit/{id}',[UserController::class,'edit'])->name('users.edit');
+Route::patch('/users/update',[UserController::class,'update'])->name('users.update');
 Route::post('/users/destroy',[UserController::class,'destroy'])->name('users.destroy');
 
 

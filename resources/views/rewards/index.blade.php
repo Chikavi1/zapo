@@ -8,6 +8,7 @@
 @endif
 
 @if(Auth::user()->type === 0 || Auth::user()->type === 2)
+<div class="container">
 
 
     <a href="{{ url('rewards/create') }}" class="btn btn-primary mb-2">Crear Regalo</a>
@@ -79,7 +80,7 @@
     </div>
   </div>
 </div>
-
+</div>
 <div class="modal fade" id="modalReclaim" tabindex="-1" role="dialog" aria-labelledby="modalReclaim" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -100,6 +101,7 @@
     </div>
   </div>
 </div>
+
 
     
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -123,7 +125,7 @@ $('#accept').click(()=> {
         'id_rewards': id,
     };
     console.log(data);
-    url = "http://127.0.0.1:8000/createReclaim";
+    url =  URL::to('/createReclaim');
 
   $.post(url,data,function(r){
      console.log(r)

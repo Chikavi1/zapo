@@ -78,7 +78,7 @@
         </tr>
         <tr>
             <th>Descripción</th>
-            <td>{{ $supplier->description }}</td>
+            <td>{!! $supplier->description !!}</td>
         </tr>
         <tr>
             <th>Nombre Usuario</th>

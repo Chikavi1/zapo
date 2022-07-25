@@ -1,22 +1,21 @@
 @extends('layouts.app')
  
 @section('content')
-<a class="btn btn-primary" href="{{ url('suppliers') }}"> Regresar</a>
-
-<h1>Editar</h1>
-
-@if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+<div class="container">
+    <a class="btn btn-primary" href="{{ url('suppliers') }}"> Regresar</a>
+    <h1>Editar</h1>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> Hay algunos errores en los campos.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
     @endif
-    <form action="{{ url('suppliers/update') }}" method="POST">
-        @method('PATCH')
+    <form  action="{{ url('suppliers/update') }}" method="POST">
+            @method('PATCH')
         @csrf
         <div class="row">
             <div class="col-md-6">
@@ -32,68 +31,36 @@
                 </div>
             </div>
         </div>
-       
-      <!-- <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-                <label for="txtLastName">Nombre representate legal:</label>
-                <input type="text" class="form-control" placeholder="Ingresa nombre representate legal"  value="{{ $supplier->representative_name }}" name="representative_name">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-                <label for="txtLastName">Telèfono:</label>
-                <input type="phone" class="form-control" placeholder="Ingresa telèfono" value="{{ $supplier->phone }}"  name="phone">
-            </div>
-          </div>
-      </div> -->
-       
-       
-        <div class="form-group">
-                <label for="txtLastName">Cashback:</label>
-                <input type="number" class="form-control" placeholder="Ingresa cashback" value="{{ $supplier->cashback }}" name="cashback"> 
-        </div> 
-       
-        <!-- <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="txtLastName">Correo electronico:</label>
-                    <input type="email" class="form-control" disabled="true" placeholder="Ingresa correo electronico" value="{{ $supplier->email }}" name="email">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="txtLastName">Contraseña:</label>
-                    <input type="text" class="form-control" placeholder="Ingresa contraseña" value="{{ $supplier->password }}" name="password">
-                </div>
-            </div>
-        </div> -->
-        <input type="hidden" class="form-control"  value="{{ $supplier->id }}" name="id">
-
         
+        <div class="form-group">
+            <label for="txtLastName">Porcentaje de retorno:</label>
+            <input type="number" class="form-control" placeholder="Ingresa porcentaje de retorno" value="{{ $supplier->cashback }}" name="cashback"> 
+        </div> 
+        <input type="hidden" class="form-control"  value="{{ $supplier->id }}" name="id">       
         <div class="form-group">
             <label for="txtAddress">Descripción:</label>
             <textarea class="form-control"  name="description" rows="10"  placeholder="Ingresa descripción">{{ $supplier->description }}</textarea>
         </div>
         <p class="text-danger text-center mt-4" data-toggle="modal" data-target="#elimatemodal">
-                                Bloquear
-                            </p>
+            Bloquear
+        </p>
         <button type="submit" class="btn btn-success my-4 btn-block">Editar</button>
     </form>
     
     
 </div>
+</div>
 
 <div class="modal fade" id="elimatemodal" tabindex="-1" role="dialog" aria-labelledby="elimatemodalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">¿estás seguro?</h5>
-      </div>
-      <div class="row">
-          <div class="col-md-3 offset-md-3 " style="margin-left:3em;">
-          </div>
-      </div>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿estás seguro?</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-3 offset-md-3 " style="margin-left:3em;">
+                </div>
+            </div>
       <div class="modal-body">
           <p>Quedara bloqueado el proveedor.</p>
       </div>

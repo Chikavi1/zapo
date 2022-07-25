@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="d-none d-md-block d-sm-none">
+<div class="container d-none d-md-block d-sm-none">
     <div class="row">
         <div class="col-lg-11">
             <h2 class="text-capitalize">{{ $reward->name }}</h2>

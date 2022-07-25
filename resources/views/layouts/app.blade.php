@@ -25,10 +25,13 @@
 <nav class="navbar navbar-expand-lg navbar-light " style="background-color:#1e3a64;border: none !important; outline: none !important;">
   <div class="container-fluid  text-center"  >
     <a class="navbar-brand text-white " href="/">Bonos</a>
+    @if(Auth::user())
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon text-white"></span>
       <i class="fa-solid fa-bars text-white"></i>
     </button>
+  @endif
     <div  class="collapse navbar-collapse justify-content-end" id="navbarNav">
       @if(Auth::user())
       <ul class="navbar-nav">
@@ -43,7 +46,16 @@
           <a class="nav-link active text-white" aria-current="page" href="/edit-landing">Editar Landing</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="/users">Usuarios</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link active text-white" aria-current="page" href="/suppliers">Proveedores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="/admins">Admins</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="/dispatcher">Despachadores</a>
         </li>
         @endif
         @if(Auth::user()->type == 1)

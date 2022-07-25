@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
+
     <h3 class="text-center" style="margin-bottom:2em;">Estadisticas</h3>
-    <div class="row">
+    <div class="row ">
         <div class="col-md-5">
             <div class="card text-center">
                 <p  >Movimientos Generados</p>
@@ -37,6 +39,7 @@
         </div>
     </div>
     
+</div>
 </div>
 
 
