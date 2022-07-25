@@ -12,7 +12,11 @@ class RewardsController extends Controller
     
     public function index()
     {
-      $rewards = Rewards::where('estatus',1)->where('user_id',Auth::user()->id)->get();
+        if(Auth::user()->type != 1){
+            $rewards = Rewards::where('estatus',1)->where('user_id',Auth::user()->id)->get();
+        }else{
+            $rewards = Rewards::where('estatus',1)->get();
+        }
       return view('rewards.index',compact('rewards'));
     }
 
